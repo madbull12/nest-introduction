@@ -9,13 +9,16 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateDogDto } from './dto/create-dog.dto';
 import { UpdateDogDto } from './dto/update-dog.dto';
 import { DogsService } from './dogs.service';
+import { CoachGuard } from 'src/coach/coach.guard';
 
 @Controller('dogs')
+@UseGuards(CoachGuard)
 export class DogsController {
   constructor(private readonly dogsService: DogsService) {}
   @Get()
